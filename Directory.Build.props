@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<!--
+    In a project dependency tree of project A including project B which includes C,
+    the project A can use types from project C.
+
+    This stops the misuse of above scenario by making the dependencies "private" to
+    their respective project only in compile time (not build).
+ -->
+
+<Project>
+    <ItemDefinitionGroup>
+        <PackageReference>
+            <PrivateAssets>compile</PrivateAssets>
+        </PackageReference>
+        <ProjectReference>
+            <PrivateAssets>compile</PrivateAssets>
+        </ProjectReference>
+    </ItemDefinitionGroup>
+</Project>

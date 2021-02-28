@@ -1,0 +1,120 @@
+﻿@page "/"
+
+@using Cirl.Web.Data
+@using System.Timers
+@inherits OwningComponentBase
+@implements IDisposable
+@inject Cirl.Application.Services.ILogService LogService
+
+<h1>Dashboard</h1>
+
+<p>Provides a live log view of all applications in every collection.</p>
+
+@if (logs is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Message</th>
+                <th>Severity</th>
+                <th>Date</th>
+                <th>Source</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var log in logs.OrderByDescending(a => a.Id))
+            {
+                <tr>
+                    <td>@log.Message</td>
+                    <td>
+                        @switch (log.Severity)
+                        {
+                            case Application.LogSeverity.Debug:
+                                <span class="badge badge-primary">@log.Severity</span>
+                                break;
+                            case Application.LogSeverity.Information:
+                                <span class="badge badge-success">@log.Severity</span>
+                                break;
+                            case Application.LogSeverity.Warning:
+                                <span class="badge badge-warning">@log.Severity</span>
+                                break;
+                            case Application.LogSeverity.Error:
+                            case Application.LogSeverity.Critical:
+                                <span class="badge badge-danger">@log.Severity</span>
+                                break;
+                            default:
+                                <span class="badge badge-secondary">@log.Severity</span>
+                                break;
+                        }
+                    </td>
+                    <td>@log.Date</td>
+                    <td>
+                        <ol class="breadcrumb breadcrumb-inline-table">
+                            <li class="breadcrumb-item"><a href="#">@log.Application.Collection.Name</a></li>
+                            <li class="breadcrumb-item"><a href="#">@log.Application.Name</a></li>
+                        </ol>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Cirl.Application.LogEntry> logs;
+
+    private Timer timer;
+    private long lastMaxIndex = 0;
+
+    protected override void OnInitialized()
+    {
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            timer = new Timer(1000);
+            timer.Elapsed += OnTimerInterval;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }
+
+        base.OnAfterRender(firstRender);
+    }
+
+    private async void OnTimerInterval(object sender, ElapsedEventArgs e)
+    {
+        //var logService = ScopedServices.GetService(typeof(Cirl.Application.Services.ILogService)) as Cirl.Application.Services.ILogService;
+
+        if (logs is null)
+        {
+            logs = new List<Cirl.Application.LogEntry>();
+        }
+
+        var newlogs = await LogService.GetLogs(lastMaxIndex + 1);
+        if (!newlogs.Any())
+            return;
+
+        foreach (var log in newlogs)
+        {
+            if (lastMaxIndex < log.Id)
+            {
+                lastMaxIndex = log.Id;
+            }
+
+            logs.Add(log);
+        }
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        timer?.Dispose();
+    }
+}
