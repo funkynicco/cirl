@@ -1,6 +1,5 @@
 using AutoMapper;
 using Cirl.IoC;
-using Cirl.Web.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -30,7 +29,6 @@ namespace Cirl.Web
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
 
             services.AddSingleton(new MapperConfiguration(cfg => MappingConfiguration.Configure(cfg)).CreateMapper());
 
