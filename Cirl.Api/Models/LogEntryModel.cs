@@ -22,6 +22,9 @@ namespace Cirl.Api.Models
         public string StackTrace { get; set; }
 
         [Required]
+        public Guid ApplicationId { get; set; }
+
+        [Required]
         public string Key { get; set; }
     }
 }
