@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cirl.Application", "Cirl.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cirl.Api", "Cirl.Api\Cirl.Api.csproj", "{47917D09-9DA0-45CF-BF7A-4A83F7F41B49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirl.IoC", "Cirl.IoC\Cirl.IoC.csproj", "{9A906A50-DD8F-4C87-ACD8-DD9D5D644C03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cirl.IoC", "Cirl.IoC\Cirl.IoC.csproj", "{9A906A50-DD8F-4C87-ACD8-DD9D5D644C03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirl.Connector", "Cirl.Connector\Cirl.Connector.csproj", "{2370714B-4FB0-4DE8-9E52-DAEE106ACEE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirl.Connector.Test", "Cirl.Connector.Test\Cirl.Connector.Test.csproj", "{84B55E94-9EB8-4531-8469-83AE88F81AF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{9A906A50-DD8F-4C87-ACD8-DD9D5D644C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A906A50-DD8F-4C87-ACD8-DD9D5D644C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A906A50-DD8F-4C87-ACD8-DD9D5D644C03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2370714B-4FB0-4DE8-9E52-DAEE106ACEE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2370714B-4FB0-4DE8-9E52-DAEE106ACEE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2370714B-4FB0-4DE8-9E52-DAEE106ACEE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2370714B-4FB0-4DE8-9E52-DAEE106ACEE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84B55E94-9EB8-4531-8469-83AE88F81AF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84B55E94-9EB8-4531-8469-83AE88F81AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84B55E94-9EB8-4531-8469-83AE88F81AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84B55E94-9EB8-4531-8469-83AE88F81AF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

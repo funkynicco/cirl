@@ -32,17 +32,17 @@ else
                     <td>
                         @switch (log.Severity)
                         {
-                            case Application.LogSeverity.Debug:
+                            case Connector.LogSeverity.Debug:
                                 <span class="badge badge-primary">@log.Severity</span>
                                 break;
-                            case Application.LogSeverity.Information:
+                            case Connector.LogSeverity.Information:
                                 <span class="badge badge-success">@log.Severity</span>
                                 break;
-                            case Application.LogSeverity.Warning:
+                            case Connector.LogSeverity.Warning:
                                 <span class="badge badge-warning">@log.Severity</span>
                                 break;
-                            case Application.LogSeverity.Error:
-                            case Application.LogSeverity.Critical:
+                            case Connector.LogSeverity.Error:
+                            case Connector.LogSeverity.Critical:
                                 <span class="badge badge-danger">@log.Severity</span>
                                 break;
                             default:
@@ -104,6 +104,11 @@ else
             if (lastMaxIndex < log.Id)
             {
                 lastMaxIndex = log.Id;
+            }
+
+            if (log is null)
+            {
+                throw new Exception("ERROR: log item is null");
             }
 
             logs.Add(log);

@@ -1,4 +1,5 @@
 ﻿using Cirl.Application;
+using Cirl.Connector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

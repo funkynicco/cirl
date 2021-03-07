@@ -1,4 +1,5 @@
 ﻿using Cirl.Application;
+using Cirl.Connector;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

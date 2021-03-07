@@ -1,0 +1,41 @@
+name: ci-web-production
+
+on:
+  push:
+    branches: [release/production]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  build_target: 'Release'
+  location_web: 'C:\inetpub\websites\cirl.nprog.com'
+  location_api: 'C:\inetpub\websites\api.cirl.nprog.com'
+  pool_web: 'cirl.nprog.com'
+  pool_api: 'api.cirl.nprog.com'
+
+jobs:
+  build:
+    runs-on: cirl
+
+    steps:
+      # Checks out repository under $GITHUB_WORKSPACE
+      - name: Checkout github repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      - name: Restore
+        run: dotnet restore Cirl.sln
+
+      - name: Publish api
+        run: dotnet publish -c ${{ env.build_target }} -o Publish\Api
+
+      - name: Publish web
+        run: dotnet publish -c ${{ env.build_target }} -o Publish\Web
+      
+      - name: Deploying api
+        run: python py\deploy.py -i Publish\Api -o "${{ env.location_api }}" -p "${{ env.pool_api }}"
+      
+      - name: Deploying web
+        run: python py\deploy.py -i Publish\Web -o "${{ env.location_web }}" -p "${{ env.pool_web }}"

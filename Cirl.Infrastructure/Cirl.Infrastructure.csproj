@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cirl.Application\Cirl.Application.csproj" />
+    <ProjectReference Include="..\Cirl.Connector\Cirl.Connector.csproj" />
   </ItemGroup>
 
 </Project>

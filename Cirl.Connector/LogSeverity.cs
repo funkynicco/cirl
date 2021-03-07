@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cirl.Application
+namespace Cirl.Connector
 {
     public enum LogSeverity
     {
