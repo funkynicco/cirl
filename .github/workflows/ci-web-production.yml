@@ -29,10 +29,10 @@ jobs:
         run: dotnet restore Cirl.sln
 
       - name: Publish api
-        run: dotnet publish -c ${{ env.build_target }} -o Publish\Api
+        run: dotnet publish -c ${{ env.build_target }} -o Publish\Api Cirl.Api\Cirl.Api.csproj
 
       - name: Publish web
-        run: dotnet publish -c ${{ env.build_target }} -o Publish\Web
+        run: dotnet publish -c ${{ env.build_target }} -o Publish\Web Cirl.Web\Cirl.Web.csproj
       
       - name: Deploying api
         run: python py\deploy.py -i Publish\Api -o "${{ env.location_api }}" -p "${{ env.pool_api }}"
