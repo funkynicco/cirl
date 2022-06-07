@@ -56,42 +56,17 @@ namespace Cirl.Infrastructure.Internal
 
         private static void SeedData(ModelBuilder builder)
         {
-            var collectionId = Guid.Parse("74423A21-A8E4-4F09-B60F-BABA7602BDD9");
-            var applicationId = Guid.Parse("16DF48D3-4930-44B9-AADE-EA975F74C8C0");
+            var collectionId = Guid.Parse("74423a21-a8e4-4f09-b60f-baba7602bdd9");
+            var webApplicationId = Guid.Parse("16df48d3-4930-44b9-aade-ea975f74c8c0");
+            var apiApplicationId = Guid.Parse("3a761b93-4aec-4a74-a52b-009190977903");
 
             builder.Entity<LogCollection>().HasData(
-                new LogCollection { Id = collectionId, Name = "DefaultCollection" }
+                new LogCollection { Id = collectionId, Name = "Cirl" }
             );
 
             builder.Entity<LogApplication>().HasData(
-                new LogApplication { Id = applicationId, Name = "MyApplication", CollectionId = collectionId }
-            );
-
-            builder.Entity<LogEntry>().HasData(
-                new LogEntry
-                {
-                    Id = 1,
-                    ApplicationId = applicationId,
-                    Severity = LogSeverity.Debug,
-                    Date = DateTimeOffset.UtcNow.AddSeconds(-51252),
-                    Message = "This is a test"
-                },
-                new LogEntry
-                {
-                    Id = 2,
-                    ApplicationId = applicationId,
-                    Severity = LogSeverity.Error,
-                    Date = DateTimeOffset.UtcNow.AddSeconds(-2952),
-                    Message = "Something crashed!"
-                },
-                new LogEntry
-                {
-                    Id = 3,
-                    ApplicationId = applicationId,
-                    Severity = LogSeverity.Information,
-                    Date = DateTimeOffset.UtcNow.AddSeconds(-2840),
-                    Message = "System restored"
-                }
+                new LogApplication { Id = webApplicationId, Name = "Web", CollectionId = collectionId },
+                new LogApplication { Id = apiApplicationId, Name = "Api", CollectionId = collectionId }
             );
         }
     }
